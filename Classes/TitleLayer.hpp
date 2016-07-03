@@ -11,21 +11,30 @@
 
 #include "cocos2d.h"
 
+#define WINSIZE Director::getInstance()->getWinSize() // 画面サイズ取得用マクロ
+
+#define NICONICO_SIZE 100
+
 class TitleLayer : public cocos2d::Layer
 {
 protected:
     enum ZOrder
     {
         Z_Background,
+        Z_NicoNicoButton,
     };
     
     enum Tag
     {
         T_Background,
+        T_NicoNicoButton,
     };
     
     void initBackground(); // 背景の初期化
     void createAndMoveGameScene(); // ゲームシーンを作成し、移動
+    void createNicoNicoButton();
+    cocos2d::Sprite* _niconicoButton;
+    void showPublisher();
     
 public:
     TitleLayer(); // コンストラクタ

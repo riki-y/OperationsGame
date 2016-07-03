@@ -52,6 +52,7 @@ bool TitleLayer::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
     
     initBackground(); // 背景の初期化
+    createNicoNicoButton();
     
     return true;
 }
@@ -65,8 +66,30 @@ void TitleLayer::initBackground()
     addChild(background, Z_Background, T_Background);
 }
 
+void TitleLayer::createNicoNicoButton()
+{
+    _niconicoButton = Sprite::create("tv.png");
+    _niconicoButton->setAnchorPoint(Point::ZERO);
+    _niconicoButton->setPosition(Point(WINSIZE.width - 200, WINSIZE.height - 200));
+    
+    addChild(_niconicoButton, Z_NicoNicoButton, T_NicoNicoButton);
+}
+
+void TitleLayer::showPublisher()
+{
+    
+}
+
 bool TitleLayer::onTouchBegan(Touch* touch, Event* unused_event)
 {
+    float distance = _niconicoButton->getPosition().getDistance(touch->getLocation());
+    
+    if (distance <= NICONICO_SIZE) {
+        showPublisher();
+        
+        return false;
+    }
+    
     return true;
 }
 
