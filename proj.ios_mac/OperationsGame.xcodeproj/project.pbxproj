@@ -97,6 +97,7 @@
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
+		E433A8351D299071006694E9 /* TitleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E433A8331D299071006694E9 /* TitleLayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,8 +219,6 @@
 		752069941D2981C500284662 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		752069961D2981D000284662 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		752069981D2981E900284662 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Twitter.framework; sourceTree = DEVELOPER_DIR; };
-		7520699A1D29838F00284662 /* CocosSampleFeatures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleFeatures.h; sourceTree = "<group>"; };
-		7520699B1D2983AA00284662 /* CocosSampleEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleEventListener.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -228,6 +227,11 @@
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		E433A82E1D2989DC006694E9 /* CocosSampleFeatures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleFeatures.h; sourceTree = "<group>"; };
+		E433A82F1D298A04006694E9 /* CocosSampleConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleConstants.h; sourceTree = "<group>"; };
+		E433A8301D298A93006694E9 /* CocosSampleEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleEventListener.h; sourceTree = "<group>"; };
+		E433A8331D299071006694E9 /* TitleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleLayer.cpp; sourceTree = "<group>"; };
+		E433A8341D299071006694E9 /* TitleLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TitleLayer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +416,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E433A82F1D298A04006694E9 /* CocosSampleConstants.h */,
 				752069601D297B1D00284662 /* niconico */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -423,8 +428,10 @@
 				752069571D22E5CB00284662 /* InputCardSprite.hpp */,
 				7520695B1D27C7B700284662 /* CommentSprite.cpp */,
 				7520695C1D27C7B700284662 /* CommentSprite.hpp */,
-				7520699A1D29838F00284662 /* CocosSampleFeatures.h */,
-				7520699B1D2983AA00284662 /* CocosSampleEventListener.h */,
+				E433A82E1D2989DC006694E9 /* CocosSampleFeatures.h */,
+				E433A8301D298A93006694E9 /* CocosSampleEventListener.h */,
+				E433A8331D299071006694E9 /* TitleLayer.cpp */,
+				E433A8341D299071006694E9 /* TitleLayer.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -634,6 +641,7 @@
 				7520695D1D27C7B700284662 /* CommentSprite.cpp in Sources */,
 				752069461CDCE5F500284662 /* ButtonSprite.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				E433A8351D299071006694E9 /* TitleLayer.cpp in Sources */,
 				752069581D22E5CB00284662 /* InputCardSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,10 @@
 #include "AppDelegate.h"
-#include "MainGameScene.hpp"
+#include "TitleLayer.hpp"
 #include "niconico/NicoNicoCocos.h"
+#include "CocosSampleEventListener.h"
+#include "CocosSampleFeatures.h"
+
+using namespace niconico;
 
 USING_NS_CC;
 
@@ -36,7 +40,7 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    niconico::NicoNicoCocos::getInstance().initialize("", "", new niconico::NicoNicoCocosFeatures(), new niconico::NicoNicoCocosEventListener());
+    niconico::NicoNicoCocos::getInstance().initialize("", "", new CocosSampleFeatures(), new CocosSampleEventListener());
     
     // initialize director
     auto director = Director::getInstance();
@@ -54,7 +58,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     glview->setDesignResolutionSize(640, 1136, ResolutionPolicy::FIXED_WIDTH);
     
-    auto scene = MainGameScene::createScene();
+    auto scene = TitleLayer::createScene();
     director->runWithScene(scene);
     
     register_all_packages();
