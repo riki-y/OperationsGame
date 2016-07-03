@@ -7,6 +7,7 @@
 //
 
 #include "MainGameScene.hpp"
+#include "TitleLayer.hpp"
 #include <math.h>
 
 USING_NS_CC;
@@ -47,6 +48,9 @@ bool MainGameScene::init()
     _currentTouchButton = nullptr;
     _commentSprite = nullptr;
     
+    _particlePool = ParticleSystemPool::create("plist/explosion.plist", 200);
+    _particlePool->retain();
+    
     scheduleUpdate();
     
     return true;
@@ -56,11 +60,14 @@ void MainGameScene::update(float dt)
 {
     setTime(getTime() + dt);
     
+    if (_hp <= 0) {
+        finishGame();
+    }
+    
     if (getTime() > 5) {
         string delim = " ";
         std::vector<std::string> v = split("2 2 *", delim);
         int i = calculate(v);
-        printf("%d\n", i);
         
         if(i > 0) {
             string s = v.at(0)+v.at(2)+v.at(1);
@@ -77,7 +84,7 @@ void MainGameScene::onEnter() {
     auto v = Vect(-10, -5);
     auto scene = dynamic_cast<Scene*>(this->getParent());
     scene->getPhysicsWorld()->setGravity(v);
-    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+//    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     
     initGameState();
     initBackground();
@@ -187,7 +194,7 @@ void MainGameScene::createComment(std::string operation, int ans)
 void MainGameScene::createCompany()
 {
     auto company = Sprite::create("company.png");
-    company->setPosition(Point(company->getContentSize().width/2, 950));
+    company->setPosition(Point(company->getContentSize().width/2 + 30, 950));
     company->setTag(T_Company);
     
     PhysicsMaterial material;
@@ -202,6 +209,20 @@ void MainGameScene::createCompany()
     company->setPhysicsBody(body);
     
     addChild(company, Z_Company);
+    
+    // 敵のヒットポイントバー枠の表示
+    auto hpBg = Sprite::create("HpEnemyBackground.png");
+    hpBg->setPosition(Point(130, 550 + (WINSIZE.height - 660) / 2));
+    addChild(hpBg, Z_CompanyHp);
+    
+    // 敵ヒットポイントバーの表示
+    _hpBarForCompany = ProgressTimer::create(Sprite::create("HpEnemyRed.png"));
+    _hpBarForCompany->setPosition(Point(hpBg->getContentSize().width / 2, hpBg->getContentSize().height / 2));
+    _hpBarForCompany->setType(ProgressTimer::Type::BAR);
+    _hpBarForCompany->setMidpoint(Point::ZERO);
+    _hpBarForCompany->setBarChangeRate(Point(1,0));
+    _hpBarForCompany->setPercentage(10000);
+    hpBg->addChild(_hpBarForCompany);
 }
 
 void MainGameScene::createScope()
@@ -399,8 +420,28 @@ bool MainGameScene::onContactBegin(PhysicsContact& contact)
     if (nodeA != nullptr && nodeB != nullptr) {
         if (nodeA->getTag() != nodeB->getTag()) {
             if (nodeA->getTag() == Tag::T_Comment && nodeB->getTag() == Tag::T_Company) {
+                CommentSprite* sprite = (CommentSprite*)nodeA;
+                Sprite* company = (Sprite*)nodeB;
+                
+                showEffect(sprite->getPosition(), _particlePool);
+                
+                auto act = ProgressFromTo::create(0.5, _hp * 100.f / _maxHp, (_hp - sprite->getAns()) * 100.f / _maxHp);
+                _hp = _hp - sprite->getAns();
+                _hpBarForCompany->runAction(act);
+                
+                company->runAction(vibratingAnimation(_hp));
                 nodeA->removeFromParent();
             } else if(nodeA->getTag() == Tag::T_Company && nodeB->getTag() == Tag::T_Comment) {
+                CommentSprite* sprite = (CommentSprite*)nodeB;
+                Sprite* company = (Sprite*)nodeA;
+
+                showEffect(sprite->getPosition(), _particlePool);
+                
+                auto act = ProgressFromTo::create(0.5, _hp * 100.f / _maxHp, (sprite->getAns() - 400) * 100.f / _maxHp);
+                _hp = _hp - sprite->getAns();
+                _hpBarForCompany->runAction(act);
+                
+                company->runAction(vibratingAnimation(_hp));
                 nodeB->removeFromParent();
             } else if(nodeA->getTag() == Tag::T_Comment && nodeB->getTag() == Tag::T_Scope) {
                 _commentSprite = (CommentSprite*)nodeA;
@@ -467,4 +508,85 @@ int MainGameScene::calculate(vector<string> v) {
     }
     
     return -1;
+}
+
+void MainGameScene::showEffect(Point point, ParticleSystemPool* particlePool)
+{
+    auto particle = particlePool->pop();
+    particle->setPosition(point);
+    this->addChild(particle, Z_Particle, T_Particle);
+}
+
+void MainGameScene::finishGame()
+{
+    unscheduleUpdate();
+    
+    auto company = getChildByTag(T_Company);
+    auto p = company->getPosition();
+    
+    showEffect(Point(p.x + 10, p.y + 10), _particlePool);
+    
+    this->runAction(Sequence::create(DelayTime::create(0.5), CallFunc::create([this](){
+        auto company = getChildByTag(T_Company);
+        auto p = company->getPosition();
+        
+        showEffect(Point(p.x + 50, p.y + 50), _particlePool);
+    }), NULL));
+    
+    this->runAction(Sequence::create(DelayTime::create(1), CallFunc::create([this](){
+        auto company = getChildByTag(T_Company);
+        auto p = company->getPosition();
+        
+        showEffect(Point(p.x + 50, p.y - 50), _particlePool);
+    }), NULL));
+    
+    this->runAction(Sequence::create(DelayTime::create(1.5), CallFunc::create([this](){
+        auto company = getChildByTag(T_Company);
+        auto p = company->getPosition();
+        
+        showEffect(Point(p.x - 50, p.y + 50), _particlePool);
+    }), NULL));
+
+    this->runAction(Sequence::create(DelayTime::create(2), CallFunc::create([this](){
+        auto company = getChildByTag(T_Company);
+        auto p = company->getPosition();
+
+        showEffect(Point(p.x - 50, p.y - 50), _particlePool);
+        
+        company->removeFromParent();
+    }), NULL));
+    
+    this->runAction(Sequence::create(DelayTime::create(2.5), CallFunc::create([this](){
+        auto scene = TitleLayer::createScene();
+        Director::getInstance()->replaceScene(scene);
+    }), NULL));
+}
+
+// 振動アニメーション
+Spawn* MainGameScene::vibratingAnimation(int afterHp)
+{
+    auto move = Sequence::create(MoveBy::create(0.025, Point(15, 15)),
+                                 MoveBy::create(0.025, Point(-15, -15)),
+                                 MoveBy::create(0.025, Point(-15, -15)),
+                                 MoveBy::create(0.025, Point(15, 15)),
+                                 MoveBy::create(0.025, Point(15, -15)),
+                                 MoveBy::create(0.025, Point(-15, 15)),
+                                 MoveBy::create(0.025, Point(-15, 15)),
+                                 MoveBy::create(0.025, Point(15, -15)),
+                                 nullptr);
+    
+    // ダメージ時に色を赤くする
+    Action* tint;
+    if (afterHp > 0) {
+        // HPが0より大きい場合は、元の色に戻す
+        tint = Sequence::create(TintTo::create(0, 255, 0, 0),
+                                DelayTime::create(0.2),
+                                TintTo::create(0, 255, 255, 255),
+                                nullptr);
+    } else {
+        // HPが0の場合は、赤いままにする
+        tint = TintTo::create(0, 255, 0, 0);
+    }
+    
+    return Spawn::create(move, tint, nullptr);
 }

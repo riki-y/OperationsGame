@@ -59,7 +59,7 @@ bool TitleLayer::init()
 // 背景の初期化
 void TitleLayer::initBackground()
 {
-    auto background = Sprite::create("background.png");
+    auto background = Sprite::create("title.png");
     background->setAnchorPoint(Point::ZERO);
     background->setPosition(Point::ZERO);
     addChild(background, Z_Background, T_Background);

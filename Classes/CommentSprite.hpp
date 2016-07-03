@@ -22,8 +22,8 @@ public:
     static CommentSprite* create(std::string operation, int ans);
     virtual bool init(std::string operation, int ans); // 初期化
     bool equal(int ans);
-    int _ans;
     
+    CC_SYNTHESIZE(int, _ans, Ans);
     CC_SYNTHESIZE(std::string, _operation, Operation);
     
 protected:

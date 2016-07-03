@@ -15,6 +15,7 @@
 #include "ButtonSprite.hpp"
 #include "InputCardSprite.hpp"
 #include "CommentSprite.hpp"
+#include "ParticleSystemPool.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -33,6 +34,8 @@ protected:
         Z_Company,
         Z_Comment,
         Z_Scope,
+        Z_CompanyHp,
+        Z_Particle,
     };
     
     enum Tag
@@ -44,6 +47,7 @@ protected:
         T_Company,
         T_Comment,
         T_Scope,
+        T_Particle,
     };
     
     void initGameState(); // ゲーム状態を初期化
@@ -84,6 +88,8 @@ protected:
     InputCardSprite* _fourDigitSprite;
     InputCardSprite* _fiveDigitSprite;
     
+    cocos2d::ProgressTimer* _hpBarForCompany;
+    
     cocos2d::Sprite* _scope;
     
     CC_SYNTHESIZE(int, _num, Num); // ボタンの種類
@@ -92,6 +98,14 @@ protected:
     vector<string> split(const string& s, string delim);
     
     int calculate(vector<string> v);
+    
+    int _maxHp = 100;
+    int _hp = 100;
+    
+    ParticleSystemPool* _particlePool; // パーティクルプール
+    void showEffect(Point point, ParticleSystemPool* particlePool); // エフェクト表示
+    cocos2d::Spawn* vibratingAnimation(int afterHp); // 振動アニメーション
+    void finishGame();
     
 //    ButtonSprite::ButtonType getTouchButtonType(Point touchPos, ButtonSprite::PositionIndex withoutPosIndex = ButtonSprite::PositionIndex()); // タッチしたボタンのタイプを取得する
     

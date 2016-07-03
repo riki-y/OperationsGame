@@ -98,6 +98,12 @@
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		E433A8351D299071006694E9 /* TitleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E433A8331D299071006694E9 /* TitleLayer.cpp */; };
+		E48F64CA1D29B2F200CAA0F6 /* HpEnemyBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E48F64C91D29B2F200CAA0F6 /* HpEnemyBackground.png */; };
+		E48F64CC1D29B2FD00CAA0F6 /* HpEnemyRed.png in Resources */ = {isa = PBXBuildFile; fileRef = E48F64CB1D29B2FD00CAA0F6 /* HpEnemyRed.png */; };
+		E48F64CE1D29BADA00CAA0F6 /* plist in Resources */ = {isa = PBXBuildFile; fileRef = E48F64CD1D29BADA00CAA0F6 /* plist */; };
+		E48F64D11D29BB0C00CAA0F6 /* NParticleSystemQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E48F64CF1D29BB0C00CAA0F6 /* NParticleSystemQuad.cpp */; };
+		E48F64D31D29BB1400CAA0F6 /* ParticleSystemPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E48F64D21D29BB1400CAA0F6 /* ParticleSystemPool.cpp */; };
+		E48F64D91D29C73000CAA0F6 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = E48F64D81D29C73000CAA0F6 /* title.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +238,14 @@
 		E433A8301D298A93006694E9 /* CocosSampleEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocosSampleEventListener.h; sourceTree = "<group>"; };
 		E433A8331D299071006694E9 /* TitleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleLayer.cpp; sourceTree = "<group>"; };
 		E433A8341D299071006694E9 /* TitleLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TitleLayer.hpp; sourceTree = "<group>"; };
+		E48F64C91D29B2F200CAA0F6 /* HpEnemyBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HpEnemyBackground.png; sourceTree = "<group>"; };
+		E48F64CB1D29B2FD00CAA0F6 /* HpEnemyRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HpEnemyRed.png; sourceTree = "<group>"; };
+		E48F64CD1D29BADA00CAA0F6 /* plist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = plist; sourceTree = "<group>"; };
+		E48F64CF1D29BB0C00CAA0F6 /* NParticleSystemQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NParticleSystemQuad.cpp; sourceTree = "<group>"; };
+		E48F64D01D29BB0C00CAA0F6 /* NParticleSystemQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NParticleSystemQuad.h; sourceTree = "<group>"; };
+		E48F64D21D29BB1400CAA0F6 /* ParticleSystemPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleSystemPool.cpp; sourceTree = "<group>"; };
+		E48F64D41D29BB1A00CAA0F6 /* ParticleSystemPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleSystemPool.h; sourceTree = "<group>"; };
+		E48F64D81D29C73000CAA0F6 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +413,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E48F64D81D29C73000CAA0F6 /* title.png */,
+				E48F64CD1D29BADA00CAA0F6 /* plist */,
+				E48F64CB1D29B2FD00CAA0F6 /* HpEnemyRed.png */,
+				E48F64C91D29B2F200CAA0F6 /* HpEnemyBackground.png */,
 				752069541D22E49B00284662 /* input_card */,
 				752069501D1328BF00284662 /* input.png */,
 				752069591D27A2E800284662 /* company.png */,
@@ -416,6 +434,10 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E48F64D21D29BB1400CAA0F6 /* ParticleSystemPool.cpp */,
+				E48F64D41D29BB1A00CAA0F6 /* ParticleSystemPool.h */,
+				E48F64CF1D29BB0C00CAA0F6 /* NParticleSystemQuad.cpp */,
+				E48F64D01D29BB0C00CAA0F6 /* NParticleSystemQuad.h */,
 				E433A82F1D298A04006694E9 /* CocosSampleConstants.h */,
 				752069601D297B1D00284662 /* niconico */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
@@ -584,9 +606,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E48F64CE1D29BADA00CAA0F6 /* plist in Resources */,
 				752069831D29807700284662 /* NicoNico.bundle in Resources */,
 				7520694B1CDF17FE00284662 /* button_push.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				E48F64CA1D29B2F200CAA0F6 /* HpEnemyBackground.png in Resources */,
 				7520694A1CDF17FE00284662 /* button.png in Resources */,
 				7520695F1D2928E300284662 /* transparent.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
@@ -600,7 +624,9 @@
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
+				E48F64D91D29C73000CAA0F6 /* title.png in Resources */,
 				752069611D297B1D00284662 /* niconico in Resources */,
+				E48F64CC1D29B2FD00CAA0F6 /* HpEnemyRed.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				7520694C1CDF17FE00284662 /* background.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
@@ -642,6 +668,8 @@
 				752069461CDCE5F500284662 /* ButtonSprite.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				E433A8351D299071006694E9 /* TitleLayer.cpp in Sources */,
+				E48F64D11D29BB0C00CAA0F6 /* NParticleSystemQuad.cpp in Sources */,
+				E48F64D31D29BB1400CAA0F6 /* ParticleSystemPool.cpp in Sources */,
 				752069581D22E5CB00284662 /* InputCardSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,7 +703,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Riki Yoshida (36GNB8847E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keiichi Suzuki (2A79V5ZKMM)";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -719,7 +747,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Riki Yoshida (36GNB8847E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keiichi Suzuki (2A79V5ZKMM)";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
