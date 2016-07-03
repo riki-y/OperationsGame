@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "MainGameScene.hpp"
+#include "niconico/NicoNicoCocos.h"
 
 USING_NS_CC;
 
@@ -35,6 +36,8 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+    niconico::NicoNicoCocos::getInstance().initialize("", "", new niconico::NicoNicoCocosFeatures(), new niconico::NicoNicoCocosEventListener());
+    
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();

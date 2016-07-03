@@ -1,0 +1,41 @@
+//
+//  NicoNicoMetalShader.txt
+//  NicoNicoSDK
+//
+//  Copyright (c) 2015 Dwango. All rights reserved.
+//
+
+#include <metal_graphics>
+#include <metal_matrix>
+#include <metal_geometric>
+#include <metal_math>
+#include <metal_texture>
+
+using namespace metal;
+
+struct VertexInOut
+{
+    float4 m_Position [[position]];
+    float2 m_TexCoord [[user(texturecoord)]];
+};
+
+vertex VertexInOut niconicoVertex(constant float2         *pPosition   [[ buffer(0) ]],
+                                  constant packed_float2  *pTexCoords  [[ buffer(1) ]],
+                                  uint                     vid         [[ vertex_id ]])
+{
+    VertexInOut outVertices;
+    
+    outVertices.m_Position = float4(pPosition[vid].xy, 0.0, 1.0);
+    outVertices.m_TexCoord = pTexCoords[vid];
+    
+    return outVertices;
+}
+
+fragment half4 niconicoFragment(VertexInOut     inFrag    [[ stage_in ]],
+                               texture2d<half>  tex2D     [[ texture(0) ]])
+{
+    constexpr sampler s_quad(filter::linear);
+    half4 color = tex2D.sample(s_quad, inFrag.m_TexCoord);
+    
+    return color;
+}

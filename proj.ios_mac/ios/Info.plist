@@ -148,5 +148,46 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>simg.jp</key>
+			<dict>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludeSubdomains</key>
+				<true/>
+			</dict>
+			<key>nimg.jp</key>
+			<dict>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludeSubdomains</key>
+				<true/>
+			</dict>
+			<key>smilevideo.jp</key>
+			<dict>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludeSubdomains</key>
+				<true/>
+			</dict>
+			<key>nicovideo.jp</key>
+			<dict/>
+			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+			<false/>
+			<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+			<key>NSIncludeSubdomains</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
