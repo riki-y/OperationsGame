@@ -444,13 +444,10 @@ int MainGameScene::calculate(vector<string> v) {
     
     for (string s : v) {
         if (i == 0) {
-            printf("c1: %s", s.c_str());
             c1 = atoi(s.c_str());
         } else if ( i == 1) {
-            printf("c2: %s", s.c_str());
             c2 = atoi(s.c_str());
         } else if (i == 2) {
-            printf("c3: %s", s.c_str());
             c = s.c_str();
         }
         

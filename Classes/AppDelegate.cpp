@@ -40,7 +40,7 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    niconico::NicoNicoCocos::getInstance().initialize("", "", new CocosSampleFeatures(), new CocosSampleEventListener());
+    //niconico::NicoNicoCocos::getInstance().initialize("", "", new CocosSampleFeatures(), new CocosSampleEventListener());
     
     // initialize director
     auto director = Director::getInstance();

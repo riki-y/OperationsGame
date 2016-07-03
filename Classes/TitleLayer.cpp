@@ -32,16 +32,6 @@ Scene* TitleLayer::createScene()
     auto layer = TitleLayer::create();
     scene->addChild(layer);
     
-    string id = "aaa";
-    string secret = "aaa";
-    
-    niconico::NicoNicoCocos::getInstance().initialize(
-                                                      id.c_str(),
-                                                      secret.c_str(),
-                                                      new niconico::CocosSampleFeatures(),
-                                                      new niconico::CocosSampleEventListener()
-                                                      );
-    
     return scene;
 }
 

@@ -35,7 +35,7 @@ bool CommentSprite::init(std::string operation, int ans)
     }
     
     setOperation(operation);
-    setPosition(Point(WINSIZE.width, WINSIZE.height));
+    setPosition(Point(WINSIZE.width-20, WINSIZE.height-20));
     showOperation();
     _ans = ans;
     
